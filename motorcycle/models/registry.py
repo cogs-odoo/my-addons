@@ -6,11 +6,11 @@ class Registry(models.Model):
     _rec_name = "registry_number"
 
     registry_number = fields.Char(string="Registry number", required=True)
-    vin = fields.Char(required=True)
-    first_name = fields.Char(required=True)
-    last_name = fields.Char(required=True)
+    vin = fields.Char(string="VIN", required=True)
+    first_name = fields.Char(string="First Name", required=True)
+    last_name = fields.Char(string="Last Name", required=True)
     picture = fields.Image()
-    current_mileage = fields.Float()
-    license_plate = fields.Char()
-    certificate_title = fields.Binary()
-    register_date = fields.Date()
+    current_mileage = fields.Float(string="Current Mileage")
+    license_plate = fields.Char(string="License Plate Number")
+    certificate_title = fields.Binary(string="Certificate Title")
+    register_date = fields.Date(string="Registration Date")
