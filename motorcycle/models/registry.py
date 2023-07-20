@@ -7,6 +7,8 @@ class Registry(models.Model):
     _description = "Motorcycle registry"
     _rec_name = "registry_number"
 
+    active = fields.Boolean(default=True)
+
     registry_number = fields.Char(string="Registry number", default="MRN0000", 
                                   copy=False, required=True, readonly=True)
     vin = fields.Char(string="VIN", required=True)
@@ -19,6 +21,10 @@ class Registry(models.Model):
     register_date = fields.Date(string="Registration Date")
 
     _sql_constraints = [('unique_vin', 'UNIQUE (vin)', 'This VIN already exists!')]
+
+    owner_id = fields.Many2one(comodel_name="res.partner", string='Owner')
+    email = fields.Char(related="owner_id.email")
+    phone = fields.Char(related="owner_id.phone")
 
     @api.model_create_multi
     def create(self, vals_list):
