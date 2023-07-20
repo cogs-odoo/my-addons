@@ -12,8 +12,8 @@ class Registry(models.Model):
     registry_number = fields.Char(string="Registry number", default="MRN0000", 
                                   copy=False, required=True, readonly=True)
     vin = fields.Char(string="VIN", required=True)
-    first_name = fields.Char(string="First Name", required=True)
-    last_name = fields.Char(string="Last Name", required=True)
+    first_name = fields.Char(string="First Name")
+    last_name = fields.Char(string="Last Name")
     picture = fields.Image()
     current_mileage = fields.Float(string="Current Mileage")
     license_plate = fields.Char(string="License Plate Number")
@@ -25,6 +25,10 @@ class Registry(models.Model):
     owner_id = fields.Many2one(comodel_name="res.partner", string='Owner')
     email = fields.Char(related="owner_id.email")
     phone = fields.Char(related="owner_id.phone")
+
+    brand = fields.Char(string="Brand", compute="_compute_brand", readonly=False)
+    make = fields.Char(string="Make", compute="_compute_brand", readonly=False)
+    model = fields.Char(string="Model", compute="_compute_brand", readonly=False)
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -46,3 +50,13 @@ class Registry(models.Model):
             regex = r'^([A-Z]{1,4})([0-9]{1,3})([A-Z]{2})?$'
             if (re.match(regex, registry.license_plate) == None):
                 raise ValidationError('The License Plate must match the pattern')
+
+    @api.depends('vin')
+    def _compute_brand(self):
+        for registry in self:
+            if registry.vin:
+                registry.brand = registry.vin[0:2]
+                registry.make = registry.vin[2:4]
+                registry.model = registry.vin[4:6]
+
+    
