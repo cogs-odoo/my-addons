@@ -12,7 +12,7 @@
                 </xpath>
 
                 <xpath expr="//sheet//notebook" position="inside">
-                    <page string="Motorcycle" attrs="{'invisible':[('detailed_type', 'like', 'Motorcycle')]}">
+                    <page string="Motorcycle" attrs="{'invisible':[('detailed_type', '!=', 'motorcycle')]}">
                         <group>
                             <group>
                                 <separator string="Motorcycle Information" />
