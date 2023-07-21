@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+        <template id="registry_website">
+            <t t-call="website.layout">
+                <t t-set="title">Motorcycle Comparison</t>
+                <div class="oe_structure">
+                    <div class="container text-center">
+                        <h1 style="margin: 2rem;">Motorcycle Comparison</h1>
+                        <div class="row">
+                            <div class="card-group" style="margin-bottom: 2rem;">
+                                <div class="card border-0" style="width: 12rem; margin-top: 8.17rem;">
+                                    <div class="card-body" style="padding: 0;">
+                                        <h3>
+                                            Model
+                                        </h3>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item" style="font-weight: bold;"> Launch Date </li>
+                                            <li class="list-group-item" style="font-weight: bold;"> Range </li>
+                                            <li class="list-group-item" style="font-weight: bold;"> Horse Power </li>
+                                            <li class="list-group-item" style="font-weight: bold;"> Torque </li>
+                                            <li class="list-group-item" style="font-weight: bold;"> Top Speed </li>
+                                            <li class="list-group-item" style="font-weight: bold;"> Battery Capacity </li>
+                                            <li class="list-group-item" style="font-weight: bold;"> Curb Weight </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <t t-foreach="registries" t-as="registry">
+                                    <div class="card text-center border-0" style="width: 18rem;">
+                                        <img class="img-fluid mx-auto" t-if="registry.image_1920" t-att-src="image_data_uri(registry.image_1920)" style="width: 120px; height: 110px;"/>
+                                        <div class="card-body" style="padding: 0; margin-top: 1rem;">
+                                            <h2>
+                                                <t t-esc="registry.model" />
+                                            </h2>
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item" t-esc="registry.launch_date"/>
+                                                <li class="list-group-item" t-esc="registry.m_range"/>
+                                                <li class="list-group-item" t-esc="registry.horse_power"/>
+                                                <li class="list-group-item" t-esc="registry.torque"/>
+                                                <li class="list-group-item" t-esc="registry.top_speed"/>
+                                                <li class="list-group-item" t-esc="registry.battery_capacity"/>
+                                                <li class="list-group-item" t-esc="registry.curb_weight"/>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>

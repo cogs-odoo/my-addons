@@ -8,14 +8,15 @@
     'author': 'cogs-odoo',
     'website': 'https://github.com/cogs-odoo/technical-training',
     'category': 'Custom Modules/Kawiil',
-    'depends': ['base', 'stock'],
+    'depends': ['base', 'stock', 'website'],
     'data': ['security/motorcycle_groups.xml', 
              'security/ir.model.access.csv', 
              'security/motorcycle_security.xml',
              'data/registry_data.xml',
              'views/motorcycle_menuitems.xml',
              'views/registry_views.xml',
-             'views/product_views_inherit.xml'],
+             'views/product_views_inherit.xml',
+             'views/motorcycle_web_templates.xml'],
     'demo': ['demo/registry_demo.xml'],
     'application': True
 }
